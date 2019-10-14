@@ -6,8 +6,20 @@ jobs:
     steps:
       - checkout
       - run: yarn
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  test:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - attach_workspace:
+          at: .
+      - run: yarn ci-test
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+      - test
