@@ -1,14 +1,9 @@
 version: 2
 
-executors:
-  nodejs:
-    docker:
-      - image: circleci/node:10
-    working_directory: ~/code
-
 jobs:
   build:
-    executor: nodejs
+    docker:
+      - image: circleci/node:10
     steps:
       - checkout
       - run: yarn
@@ -17,7 +12,8 @@ jobs:
           paths:
             - .
   test:
-    executor: nodejs
+    docker:
+      - image: circleci/node:10
     steps:
       - attach_workspace:
           at: ~/code
