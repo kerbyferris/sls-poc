@@ -3,6 +3,15 @@ provider "aws" {
   profile = "kerbyferris"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "tf-state-575575708653"
+    key    = "terraform.slsPoc.tfstate"
+    region = "us-east-1"
+
+  }
+}
+
 resource "aws_dynamodb_table" "basic" {
   name           = "Basic"
   read_capacity  = 1
@@ -33,7 +42,7 @@ resource "aws_ssm_parameter" "ssm_dynamodb_arn" {
 
 resource "aws_iam_user_policy" "circleci" {
   name = "SLS POC CircleCi Policy"
-  user = circleci
+  user = "circleci"
 
   policy = <<EOF
 {
