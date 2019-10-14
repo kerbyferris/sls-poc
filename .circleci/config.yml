@@ -52,3 +52,4 @@ workflows:
       - sls-deploy:
           requires:
             - terraform-apply
+          context: kerbyferris
