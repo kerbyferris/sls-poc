@@ -1,19 +1,26 @@
 service:
-  name: sls
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
+  name: first
 
-# Add the serverless-webpack plugin
 plugins:
   - serverless-webpack
+
+custom:
+  dbName: ${ssm:/${self:service.name}/${self:provider.stage}/dynamodb_table}
+  dbArn: ${ssm:/${self:service.name}/${self:provider.stage}/dynamodb_table_arn}
 
 provider:
   name: aws
   runtime: nodejs10.x
+  environment:
+    DYNAMODB_TABLE: ${self:custom.dbName}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource: ${self:custom.dbArn}
 
 functions:
-  hello:
+  foo:
     handler: handler.hello
     events:
       - http:
