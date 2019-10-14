@@ -10,5 +10,5 @@
     "target": "es2017",
     "outDir": "lib"
   },
-  "exclude": ["node_modules"]
+  "exclude": ["**/__tests__/**", "node_modules"]
 }
