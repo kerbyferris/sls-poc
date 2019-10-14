@@ -1,8 +1,3 @@
-provider "aws" {
-  region  = "us-east-1"
-  profile = "kerbyferris"
-}
-
 terraform {
   backend "s3" {
     bucket = "tf-state-575575708653"
