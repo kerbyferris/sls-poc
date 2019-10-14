@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: yarn
       - persist_to_workspace:
-          root: ~/code
+          root: .
           paths:
             - .
   test:
@@ -16,7 +16,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - attach_workspace:
-          at: ~/code
+          at: .
       - run: yarn ci-test
 
 workflows:
