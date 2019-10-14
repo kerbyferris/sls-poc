@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  build-and-test:
     docker:
       - image: circleci/node:10
     steps:
@@ -11,18 +11,12 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json"}}
+      - run: yarn ci-test
       - persist_to_workspace:
           root: .
           paths:
             - .
-  test:
-    docker:
-      - image: circleci/node:10
-    steps:
-      - attach_workspace:
-          at: .
-      - run: yarn ci-test
-  apply:
+  terraform-apply:
     docker:
       - image: hashicorp/terraform:light
     steps:
@@ -32,17 +26,14 @@ jobs:
           name: Terraform
           command: |
             terraform init
-            terraform plan
+            terraform apply -auto-approve
 
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test:
+      - build-and-test
+      - terraform-apply:
           requires:
-            - build
-      - apply:
-          requires:
-            - test
+            - build-and-test
           context: kerbyferris
