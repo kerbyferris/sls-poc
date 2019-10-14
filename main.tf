@@ -30,3 +30,27 @@ resource "aws_ssm_parameter" "ssm_dynamodb_arn" {
   value       = aws_dynamodb_table.basic.arn
   overwrite   = true
 }
+
+resource "aws_iam_user_policy" "circleci" {
+  name = "SLS POC CircleCi Policy"
+  user = circleci
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Action": [
+                "dynamodb:*",
+                "iam:*",
+                "lambda:*",
+                "s3:*",
+                "logs:*"
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ]
+}
+EOF
+}

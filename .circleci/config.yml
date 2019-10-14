@@ -22,6 +22,13 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn ci-test
+  apply:
+    docker:
+      - image: hashicorp/terraform:light
+    steps:
+      - attach_workspace:
+          at: .
+      - run: terraform plan
 
 workflows:
   version: 2
@@ -31,3 +38,6 @@ workflows:
       - test:
           requires:
             - build
+      - apply:
+          requires:
+            - test

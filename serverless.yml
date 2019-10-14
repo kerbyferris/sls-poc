@@ -1,6 +1,11 @@
 service:
   name: first
 
+package:
+  exclude:
+    - coverage/**
+    - .circleci/**
+
 plugins:
   - serverless-webpack
 
