@@ -29,10 +29,15 @@ jobs:
             terraform apply -auto-approve
   sls-deploy:
     docker:
-      - image: amaysim/serverless
+      - image: circleci/node:10
     steps:
       - attach_workspace:
           at: .
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            sudo npm i -g serverless
+            npm install
       - run: yarn ci-deploy
 
 workflows:
