@@ -40,7 +40,7 @@ resource "aws_ssm_parameter" "ssm_dynamodb_arn" {
 }
 
 resource "aws_iam_user_policy" "circleci" {
-  name = "SLS POC CircleCi Policy"
+  name = "SLS_POC_CircleCi_Policy"
   user = "circleci"
 
   policy = <<EOF
