@@ -28,7 +28,11 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: terraform plan
+      - run:
+          name: Terraform
+          command: |
+            terraform init
+            terraform plan
 
 workflows:
   version: 2
