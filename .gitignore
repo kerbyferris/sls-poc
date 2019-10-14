@@ -7,3 +7,13 @@ jspm_packages
 
 # Webpack directories
 .webpack
+
+# Terraform
+.terraform
+terraform.tfstate*
+
+# Yarn
+yarn-error.log
+
+# VSCode
+*.code-workspace
