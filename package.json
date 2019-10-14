@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest --watch --coverage",
     "ci-test": "jest --run-in-band",
-    "deploy": "sls deploy --aws-profile kerbyferris"
+    "deploy": "sls deploy --aws-profile kerbyferris",
+    "ci-deploy": "sls deploy"
   },
   "dependencies": {
     "source-map-support": "^0.5.10",

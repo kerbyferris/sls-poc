@@ -27,6 +27,13 @@ jobs:
           command: |
             terraform init
             terraform apply -auto-approve
+  sls-deploy:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - attach_workspace:
+          at: .
+      - run: yarn ci-deploy
 
 workflows:
   version: 2
@@ -37,3 +44,6 @@ workflows:
           requires:
             - build-and-test
           context: kerbyferris
+      - sls-deploy:
+          requires:
+            - terraform-apply
