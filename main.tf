@@ -24,7 +24,8 @@ locals {
 }
 
 provider "aws" {
-  region = local.region
+  profile = "kerbyferris"
+  region  = local.region
 }
 
 module "dynamo" {
