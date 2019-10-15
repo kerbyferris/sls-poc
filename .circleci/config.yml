@@ -25,8 +25,9 @@ jobs:
       - run:
           name: Terraform
           command: |
-            yarn tf-{{ CIRCLE_BRANCH }} init
-            yarn tf-{{ CIRCLE_BRANCH }} apply -auto-approve
+            terraform workspace select {{ CIRCLE_BRANCH }}
+            terraform init
+            terraform apply -auto-approve
   sls-deploy:
     docker:
       - image: circleci/node:10
