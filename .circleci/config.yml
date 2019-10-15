@@ -25,9 +25,8 @@ jobs:
       - run:
           name: Terraform
           command: |
-            echo {{ CIRCLE_BRANCH}}
             terraform init
-            terraform workspace select {{ CIRCLE_BRANCH }}
+            terraform workspace select $CIRCLE_BRANCH
             terraform apply -auto-approve
   sls-deploy:
     docker:
