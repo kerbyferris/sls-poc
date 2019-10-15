@@ -7,7 +7,9 @@
     "test": "jest --watch --coverage",
     "ci-test": "jest --run-in-band",
     "deploy": "sls deploy --aws-profile kerbyferris",
-    "ci-deploy": "sls deploy"
+    "ci-deploy": "sls deploy",
+    "tf-dev": "terraform workspace select dev && terraform",
+    "tf-prod": "terraform workspace select prod && terraform"
   },
   "dependencies": {
     "source-map-support": "^0.5.10",
