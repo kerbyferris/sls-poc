@@ -20,3 +20,7 @@ yarn-error.log
 
 # Jest
 coverage
+
+# Yarn
+.yarn
+.yarnrc.yml
